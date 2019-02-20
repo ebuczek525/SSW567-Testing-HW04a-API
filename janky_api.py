@@ -3,13 +3,13 @@ from collections import Counter
 
 print("Enter the name of the GitHub user: ")
 username = input()
-print("Enter the repo commits URL: ")
-repourl = input()
 
 repo = requests.get('https://api.github.com/users/%s/repos' % username).json()
-json_obj = requests.get(repourl).json()
 
-c = Counter(player['name'] for player in repo)
+for element in repo:
+    name = element['name']
+    json_obj = requests.get('https://api.github.com/repos/%s/%s/commits' % (username, name).json()
+
 d = Counter(player['sha'] for player in json_obj)
 
-print(c,", Number of commits: ",len(d))
+print("Repo:",name,", Number of commits:",len(d))
