@@ -2,8 +2,8 @@ import requests
 import json
 import unittest
 
-from test1 import *
-from test2 import *
+from test1 import a
+from test2 import b
 
 def apiFunction(username):
     repos = getRepos(username)
@@ -27,10 +27,10 @@ def getCommits(username, reponame):
 
 class TestapiFunction(unittest.TestCase):
     def test_apiFunction(self):
-        self.assertEqual(apiFunction('richkempinski'), 'a')
+        self.assertEqual(apiFunction('richkempinski'), a)
 
     def test_getRepos(self):
-        self.assertEqual(getRepos('richkempinski'), 'b')
+        self.assertEqual(getRepos('richkempinski'), b)
 
     def test_getCommits(self):
         self.assertEqual(getCommits('richkempinski', 'hellogitworld'), 30)
