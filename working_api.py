@@ -1,14 +1,16 @@
-import requests, json, unittest
+import requests
+import json
+import unittest
 
-print("Enter the name of the GitHub user: ")
-username = input()
+from test1 import *
+from test2 import *
 
 def apiFunction(username):
     repos = getRepos(username)
     dict = {}
     for repo in repos:
-        name = repo["name"]
-        dict[name] = getCommits(username, name)
+        reponame = repo["name"]
+        dict[reponame] = getCommits(username, reponame)
 
     return dict
         
@@ -18,20 +20,20 @@ def getRepos(username):
     data = r.json()  
     return data
 
-def getCommits(username, name):
-    r = requests.get('https://api.github.com/repos/' + username + '/' + name + '/commits');
+def getCommits(username, reponame):
+    r = requests.get('https://api.github.com/repos/' + username + '/' + reponame + '/commits');
     data = r.json()
     return len(data)
 
 class TestapiFunction(unittest.TestCase):
     def test_apiFunction(self):
-        self.assertEqual(len(apiFunction('ebuczek525'), > 0))
+        self.assertEqual(apiFunction('richkempinski'), 'a')
 
     def test_getRepos(self):
-        self.assertEqual(len(getRepos('ebuczek525'), > 0))
+        self.assertEqual(getRepos('richkempinski'), 'b')
 
     def test_getCommits(self):
-        self.assertEqual(getCommits('ebuczek525', 'SSW567-Testing-HW02a'), 10)
+        self.assertEqual(getCommits('richkempinski', 'hellogitworld'), 30)
 
 
 if __name__ == "__main__":
