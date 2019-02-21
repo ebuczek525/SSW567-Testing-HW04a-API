@@ -25,13 +25,13 @@ def getCommits(username, name):
 
 class TestapiFunction(unittest.TestCase):
     def test_apiFunction(self):
-        assert len(apiFunction('ebuczek525')) > 0
+        self.assertEqual(len(apiFunction('ebuczek525'), > 0))
 
     def test_getRepos(self):
-        assert len(getRepos('ebuczek525')) > 0
+        self.assertEqual(len(getRepos('ebuczek525'), > 0))
 
     def test_getCommits(self):
-        assert getCommits('ebuczek525', 'SSW567-Testing-HW02a') = 10
+        self.assertEqual(getCommits('ebuczek525', 'SSW567-Testing-HW02a'), 10)
 
 
 if __name__ == "__main__":
