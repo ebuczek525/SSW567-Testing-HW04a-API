@@ -4,12 +4,14 @@ from collections import Counter
 print("Enter the name of the GitHub user: ")
 username = input()
 
-repo = requests.get('https://api.github.com/users/%s/repos' % username).json()
+def apiFunction(username):
+    repos = requests.get('https://api.github.com/users/' + username + '/repos');
+    repodata = repos.json()
+    name = Counter(player['name'] for player in repodata)
+    commits = requests.get('https://api.github.com/repos/' + username + '/' + name + '/commits');
+    commitdata = commits.json()
+    numcommits = Counter(player['commit'] for player in commitdata)
 
-for element in repo:
-    name = element['name']
-    json_obj = requests.get('https://api.github.com/repos/%s/%s/commits' % (username, name).json()
+    return (name,len(numcommits))
 
-d = Counter(player['sha'] for player in json_obj)
-
-print("Repo:",name,", Number of commits:",len(d))
+#print("Repo:",name,", Number of commits:",len(commits))
