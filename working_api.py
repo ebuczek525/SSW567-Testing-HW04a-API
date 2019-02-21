@@ -24,10 +24,10 @@ def getCommits(username, reponame):
 
 class TestapiFunction(unittest.TestCase):
     def test_apiFunction(self):
-        self.assertGreater(len(apiFunction('richkempinski'), 0))
+        self.assertGreater(len(apiFunction('richkempinski')), 0)
 
     def test_getRepos(self):
-        self.assertGreater(len(getRepos('richkempinski'), 0))
+        self.assertGreater(len(getRepos('richkempinski')), 0)
 
     def test_getCommits(self):
         self.assertGreater(getCommits('richkempinski', 'hellogitworld'), 0)
