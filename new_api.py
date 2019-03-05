@@ -13,12 +13,12 @@ def apiFunction(username):
     return dict
 
 def getRepos(username):
-    r = requests.get('https://api.github.com/users/' + username + '/repos')
+    r = requests.get('https://api.github.com/users/' + str(username) + '/repos')
     data = r.json()
     return data
 
 def getCommits(username, reponame):
-    r = requests.get('https://api.github.com/repos/' + username + '/' + reponame + '/commits')
+    r = requests.get('https://api.github.com/repos/' + str(username) + '/' + str(reponame) + '/commits')
     data = r.json()
     return len(data)
 
