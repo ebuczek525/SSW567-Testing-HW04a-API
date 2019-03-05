@@ -2,7 +2,6 @@ import json
 import unittest
 import requests
 from unittest import mock
-import patch
 
 def apiFunction(username):
     repos = getRepos(username)
