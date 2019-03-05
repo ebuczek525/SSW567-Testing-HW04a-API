@@ -28,19 +28,19 @@ class TestapiFunction(unittest.TestCase):
     @mock.patch('requests.get')
     def test_apiFunction(self, mockedReq):
         mockedReq.return_value = 'hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1'
-        api = apiFunction(self.username)
+        api = apiFunction('richkempinski')
         self.assertGreater(len(api), 0)
 
     @mock.patch('requests.get')
     def test_getRepos(self, mockedReq):
         mockedReq.return_value = 'hellogitworld, helloworld, Mocks, Project1, threads-of-life'
-        repos = getRepos(self.username)
+        repos = getRepos('richkempinski')
         self.assertGreater(len(repos), 0)
     
     @mock.patch('requests.get')
     def test_getCommits(self, mockedReq):
         mockedReq.return_value = '30'
-        commits = getCommits(self.username, self.reponame)
+        commits = getCommits('richkempinski', 'hellogitworld')
         self.assertGreater(len(commits), 0)
 
 
