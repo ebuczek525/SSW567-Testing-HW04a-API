@@ -24,22 +24,24 @@ def getCommits(username, reponame):
 
 
 class TestapiFunction(unittest.TestCase):
+
     @mock.patch('requests.get')
-
     def test_apiFunction(self, mockedReq):
-        mockedReq.return_value = ('hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1')
-        api = apiFunction(self.username)
-        self.assertGreater(len(apiFunction), 0)
+        mockedReq.return_value = 'hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1'
+        api = apiFunction(self)
+        self.assertGreater(len(api), 0)
 
+    @mock.patch('requests.get')
     def test_getRepos(self, mockedReq):
-        mockedReq.return_value = ('hellogitworld, helloworld, Mocks, Project1, threads-of-life')
-        repos = getRepos(self.username)
-        self.assertGreater(len(getRepos), 0)
-
+        mockedReq.return_value = 'hellogitworld, helloworld, Mocks, Project1, threads-of-life'
+        repos = getRepos(self)
+        self.assertGreater(len(repos), 0)
+    
+    @mock.patch('requests.get')
     def test_getCommits(self, mockedReq):
-        mockedReq.return_value = ('30')
-        commits = getCommits(self.username, self.reponame)
-        self.assertGreater(len(getCommits), 0)
+        mockedReq.return_value = '30'
+        commits = getCommits(self, self)
+        self.assertGreater(len(commits), 0)
 
 
 if __name__ == "__main__":
