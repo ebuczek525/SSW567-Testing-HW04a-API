@@ -1,7 +1,8 @@
 import requests
 import json
 import unittest
-
+import Mock
+import patch
 
 def apiFunction(username):
     repos = getRepos(username)
@@ -28,17 +29,17 @@ class TestapiFunction(unittest.TestCase):
 
     def test_apiFunction(self, mockedReq):
         mockedReq.return_value = MockResponse('{'hellogitworld': 30, 'helloworld': 6, 'Mocks': 9, 'Project1': 2, 'threads-of-life': 1}')      
-        api = apiFunction(self.username)
+        api = apiFunction()
         self.assertGreater(len(apiFunction), 0)
 
     def test_getRepos(self, mockedReq):
         mockedReq.return_value = MockResponse('hellogitworld, helloworld, Mocks, Project1, threads-of-life')      
-        repos = getRepos(self.username)
+        repos = getRepos()
         self.assertGreater(len(getRepos), 0)
 
     def test_getCommits(self, mockedReq):
         mockedReq.return_value = MockResponse('30')      
-        commits = getCommits(self.username, self.reponame)
+        commits = getCommits()
         self.assertGreater(len(getCommits), 0)
 
 
