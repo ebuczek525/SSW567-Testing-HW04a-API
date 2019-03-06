@@ -25,26 +25,19 @@ def getCommits(username, reponame):
 
 class TestapiFunction(unittest.TestCase):
 
-    @patch('requests.get')
     def test_apiFunction(self, mocked):
-        mocked.side_effect = 'hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1'
-        
-        api = apiFunction('richkempinski')
-        self.assertGreater(len(api), 0)
+        mocked.side_effect = '[hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1]'
+        self.assertEqual(mocked.side_effect, [
+        hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1])
 
-    @patch('requests.get')
     def test_getRepos(self, mocked):
-        mocked.side_effect = 'hellogitworld, helloworld, Mocks, Project1, threads-of-life'
-        
-        repos = getRepos('richkempinski')
-        self.assertGreater(len(repos), 0)
+        mocked.side_effect = '[hellogitworld, helloworld, Mocks, Project1, threads-of-life]'
+        self.assertEqual(mocked.side_effect, [
+        hellogitworld, helloworld, Mocks, Project1, threads-of-life])
     
-    @patch('requests.get')
     def test_getCommits(self, mocked):
         mocked.side_effect = '30'
-        
-        commits = getCommits('richkempinski', 'hellogitworld')
-        self.assertGreater(len(commits), 0)
+        self.assertEqual(mocked.side_effect, 30)
 
 
 if __name__ == "__main__":
