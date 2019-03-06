@@ -28,17 +28,17 @@ class TestapiFunction(unittest.TestCase):
     def test_apiFunction(self):
         mock = MagicMock()
         mock.__str__.return_value = '[hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1]'
-        self.assertEqual(str(mock), [hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1])
+        self.assertEqual(str(mock), '[hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1]')
 
     def test_getRepos(self):
         mock = MagicMock()
         mock.__str__.return_value = '[hellogitworld, helloworld, Mocks, Project1, threads-of-life]'
-        self.assertEqual(str(mock), [hellogitworld, helloworld, Mocks, Project1, threads-of-life])
+        self.assertEqual(str(mock), '[hellogitworld, helloworld, Mocks, Project1, threads-of-life]')
     
     def test_getCommits(self):
         mock = MagicMock()
         mock.__str__.return_value = '30'
-        self.assertEqual(str(mock), 30)
+        self.assertEqual(str(mock), '30')
 
 
 if __name__ == "__main__":
