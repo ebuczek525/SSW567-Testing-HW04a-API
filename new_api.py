@@ -1,7 +1,7 @@
 import json
 import unittest
 import requests
-from unittest import mock
+from unittest.mock import patch
 
 def apiFunction(username):
     repos = getRepos(username)
@@ -25,21 +25,24 @@ def getCommits(username, reponame):
 
 class TestapiFunction(unittest.TestCase):
 
-    @mock.patch('requests.get')
-    def test_apiFunction(self, mockedReq):
-        mockedReq.return_value = 'hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1'
+    @patch('requests.get')
+    def test_apiFunction(self, mocked):
+        mocked.side_effect = 'hellogitworld: 30, helloworld: 6, Mocks: 9, Project1: 2, threads-of-life: 1'
+        
         api = apiFunction('richkempinski')
         self.assertGreater(len(api), 0)
 
-    @mock.patch('requests.get')
-    def test_getRepos(self, mockedReq):
-        mockedReq.return_value = 'hellogitworld, helloworld, Mocks, Project1, threads-of-life'
+    @patch('requests.get')
+    def test_getRepos(self, mocked):
+        mocked.side_effect = 'hellogitworld, helloworld, Mocks, Project1, threads-of-life'
+        
         repos = getRepos('richkempinski')
         self.assertGreater(len(repos), 0)
     
-    @mock.patch('requests.get')
-    def test_getCommits(self, mockedReq):
-        mockedReq.return_value = '30'
+    @patch('requests.get')
+    def test_getCommits(self, mocked):
+        mocked.side_effect = '30'
+        
         commits = getCommits('richkempinski', 'hellogitworld')
         self.assertGreater(len(commits), 0)
 
